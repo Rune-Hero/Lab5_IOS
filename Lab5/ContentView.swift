@@ -1,24 +1,6 @@
 import SwiftUI
 import Network
 
-// Модель моніторингу мережі
-class NetworkMonitor: ObservableObject {
-    private var monitor: NWPathMonitor
-    private var queue = DispatchQueue.global()
-    
-    @Published var isConnected: Bool = true
-    
-    init() {
-        monitor = NWPathMonitor()
-        monitor.pathUpdateHandler = { path in
-            DispatchQueue.main.async {
-                self.isConnected = path.status == .satisfied
-            }
-        }
-        monitor.start(queue: queue)
-    }
-}
-
 struct CoinItem: Identifiable {
     let id: String
     let name: String
@@ -35,8 +17,6 @@ struct ContentView: View {
     @State private var timer: Timer?
     @State private var isRefreshDisabled = false
     @State private var showAlert = false
-    
-    @StateObject private var networkMonitor = NetworkMonitor()
     
     var body: some View {
         ZStack {
@@ -151,6 +131,10 @@ struct ContentView: View {
                 
                 Button(action: {
                     if !isRefreshDisabled {
+                        if !isInternetAvailable() {
+                            showAlert = true
+                            return
+                        }
                         refreshTimer()
                         loadData()
                     }
@@ -176,7 +160,7 @@ struct ContentView: View {
                     .shadow(color: isRefreshDisabled ? .gray.opacity(0.3) : .green.opacity(0.3), radius: 8, x: 0, y: 4)
                 }
                 .padding(.horizontal)
-                .disabled(isRefreshDisabled)
+                .disabled(isRefreshDisabled) // блокується тільки через таймер
                 
                 Spacer()
             }
@@ -235,12 +219,6 @@ struct ContentView: View {
     }
 
     func loadData() {
-        // Перевірка інтернету перед запитом
-        if !networkMonitor.isConnected {
-            showAlert = true
-            return
-        }
-        
         let urlString = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana"
         guard let url = URL(string: urlString) else { return }
         
@@ -277,6 +255,26 @@ struct ContentView: View {
                 }
             }
         }.resume()
+    }
+    
+    // Функція перевірки інтернету
+    func isInternetAvailable() -> Bool {
+        let monitor = NWPathMonitor()
+        let semaphore = DispatchSemaphore(value: 0)
+        var status = false
+        
+        monitor.pathUpdateHandler = { path in
+            status = (path.status == .satisfied)
+            semaphore.signal()
+            monitor.cancel()
+        }
+        
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
+        
+        _ = semaphore.wait(timeout: .now() + 1.0) // максимум чекати 1 секунду
+        
+        return status
     }
 }
 
