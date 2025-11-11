@@ -1,4 +1,23 @@
 import SwiftUI
+import Network
+
+// Модель моніторингу мережі
+class NetworkMonitor: ObservableObject {
+    private var monitor: NWPathMonitor
+    private var queue = DispatchQueue.global()
+    
+    @Published var isConnected: Bool = true
+    
+    init() {
+        monitor = NWPathMonitor()
+        monitor.pathUpdateHandler = { path in
+            DispatchQueue.main.async {
+                self.isConnected = path.status == .satisfied
+            }
+        }
+        monitor.start(queue: queue)
+    }
+}
 
 struct CoinItem: Identifiable {
     let id: String
@@ -15,6 +34,9 @@ struct ContentView: View {
     @State private var infoText: String = "Обери валюту та натисни кнопку"
     @State private var timer: Timer?
     @State private var isRefreshDisabled = false
+    @State private var showAlert = false
+    
+    @StateObject private var networkMonitor = NetworkMonitor()
     
     var body: some View {
         ZStack {
@@ -163,6 +185,13 @@ struct ContentView: View {
         .onAppear {
             loadData()
         }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Помилка з'єднання"),
+                message: Text("Немає підключення до Інтернету. Перевірте мережу."),
+                dismissButton: .default(Text("ОК"))
+            )
+        }
     }
     
     func refreshTimer() {
@@ -170,9 +199,8 @@ struct ContentView: View {
         
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { _ in
-                timer?.invalidate()
-                isRefreshDisabled = false
-                
+            timer?.invalidate()
+            isRefreshDisabled = false
         }
     }
     
@@ -207,6 +235,12 @@ struct ContentView: View {
     }
 
     func loadData() {
+        // Перевірка інтернету перед запитом
+        if !networkMonitor.isConnected {
+            showAlert = true
+            return
+        }
+        
         let urlString = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana"
         guard let url = URL(string: urlString) else { return }
         
