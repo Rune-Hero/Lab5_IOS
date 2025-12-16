@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		231FD9D22EE956C4004AA6C4 /* CoinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231FD9D12EE956C4004AA6C4 /* CoinItem.swift */; };
+		231FD9D42EE95702004AA6C4 /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231FD9D32EE95702004AA6C4 /* CryptoService.swift */; };
+		231FD9D62EE95730004AA6C4 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231FD9D52EE95730004AA6C4 /* NetworkMonitor.swift */; };
+		231FD9D92EE95784004AA6C4 /* NumberFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231FD9D82EE95784004AA6C4 /* NumberFormatter+Extensions.swift */; };
+		231FD9DB2EE95951004AA6C4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231FD9DA2EE95951004AA6C4 /* SettingsView.swift */; };
+		231FD9DD2EE9597B004AA6C4 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231FD9DC2EE9597B004AA6C4 /* AppSettings.swift */; };
+		231FD9DF2EE95D88004AA6C4 /* FileManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231FD9DE2EE95D88004AA6C4 /* FileManagerService.swift */; };
+		231FD9E12EE96075004AA6C4 /* SavedDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231FD9E02EE96075004AA6C4 /* SavedDataView.swift */; };
 		23ACE4C72EAB5B5000EE7BD8 /* Lab5App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ACE4C62EAB5B5000EE7BD8 /* Lab5App.swift */; };
 		23ACE4C92EAB5B5000EE7BD8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ACE4C82EAB5B5000EE7BD8 /* ContentView.swift */; };
 		23ACE4CB2EAB5B5300EE7BD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23ACE4CA2EAB5B5300EE7BD8 /* Assets.xcassets */; };
@@ -34,6 +42,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		231FD9D12EE956C4004AA6C4 /* CoinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinItem.swift; sourceTree = "<group>"; };
+		231FD9D32EE95702004AA6C4 /* CryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoService.swift; sourceTree = "<group>"; };
+		231FD9D52EE95730004AA6C4 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		231FD9D82EE95784004AA6C4 /* NumberFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		231FD9DA2EE95951004AA6C4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		231FD9DC2EE9597B004AA6C4 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		231FD9DE2EE95D88004AA6C4 /* FileManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerService.swift; sourceTree = "<group>"; };
+		231FD9E02EE96075004AA6C4 /* SavedDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDataView.swift; sourceTree = "<group>"; };
 		23ACE4C32EAB5B5000EE7BD8 /* Lab5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lab5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23ACE4C62EAB5B5000EE7BD8 /* Lab5App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lab5App.swift; sourceTree = "<group>"; };
 		23ACE4C82EAB5B5000EE7BD8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +87,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		231FD9CE2EE95610004AA6C4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				231FD9D12EE956C4004AA6C4 /* CoinItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		231FD9CF2EE95624004AA6C4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				231FD9DC2EE9597B004AA6C4 /* AppSettings.swift */,
+				231FD9D32EE95702004AA6C4 /* CryptoService.swift */,
+				231FD9DE2EE95D88004AA6C4 /* FileManagerService.swift */,
+				231FD9D52EE95730004AA6C4 /* NetworkMonitor.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		231FD9D02EE95646004AA6C4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				23ACE4C82EAB5B5000EE7BD8 /* ContentView.swift */,
+				231FD9DA2EE95951004AA6C4 /* SettingsView.swift */,
+				231FD9E02EE96075004AA6C4 /* SavedDataView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		231FD9D72EE95752004AA6C4 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				231FD9D82EE95784004AA6C4 /* NumberFormatter+Extensions.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		23ACE4BA2EAB5B5000EE7BD8 = {
 			isa = PBXGroup;
 			children = (
@@ -95,7 +148,10 @@
 			isa = PBXGroup;
 			children = (
 				23ACE4C62EAB5B5000EE7BD8 /* Lab5App.swift */,
-				23ACE4C82EAB5B5000EE7BD8 /* ContentView.swift */,
+				231FD9CE2EE95610004AA6C4 /* Models */,
+				231FD9D02EE95646004AA6C4 /* Views */,
+				231FD9CF2EE95624004AA6C4 /* Services */,
+				231FD9D72EE95752004AA6C4 /* Utilities */,
 				23ACE4CA2EAB5B5300EE7BD8 /* Assets.xcassets */,
 				23ACE4CC2EAB5B5300EE7BD8 /* Preview Content */,
 			);
@@ -257,8 +313,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				231FD9DB2EE95951004AA6C4 /* SettingsView.swift in Sources */,
+				231FD9D42EE95702004AA6C4 /* CryptoService.swift in Sources */,
 				23ACE4C92EAB5B5000EE7BD8 /* ContentView.swift in Sources */,
+				231FD9D92EE95784004AA6C4 /* NumberFormatter+Extensions.swift in Sources */,
+				231FD9D62EE95730004AA6C4 /* NetworkMonitor.swift in Sources */,
 				23ACE4C72EAB5B5000EE7BD8 /* Lab5App.swift in Sources */,
+				231FD9E12EE96075004AA6C4 /* SavedDataView.swift in Sources */,
+				231FD9DD2EE9597B004AA6C4 /* AppSettings.swift in Sources */,
+				231FD9D22EE956C4004AA6C4 /* CoinItem.swift in Sources */,
+				231FD9DF2EE95D88004AA6C4 /* FileManagerService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
